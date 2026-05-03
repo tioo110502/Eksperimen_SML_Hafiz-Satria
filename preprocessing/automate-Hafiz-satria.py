@@ -16,8 +16,8 @@ from sklearn.preprocessing import LabelEncoder
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 # CONFIG
-DATA_PATH = "Eksperimen_SML_Hafiz-Satria\Analisis_sentimen_timnas_STY.csv"
-OUTPUT_PATH = "Eksperimen_SML_Hafiz-Satria\preprocessing\Analisis_sentimen_timnas_STY_cleaned.csv"
+DATA_PATH = "Analisis_sentimen_timnas_STY.csv"
+OUTPUT_PATH = "preprocessing\Analisis_sentimen_timnas_STY_cleaned.csv"
 
 
 # LOAD DATA
