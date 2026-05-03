@@ -1,0 +1,47 @@
+name: ML Preprocessing Pipeline
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run-preprocess:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.7'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas scikit-learn numpy
+
+      - name: Run preprocessing script
+        run: |
+          python preprocessing/automate-Hafiz-satria.py
+
+      - name: Show generated files (debug)
+        run: |
+          echo "Isi folder setelah preprocessing:"
+          ls -R
+
+      - name: Commit and push results
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          git add reviews_cleaned.csv
+          
+          git diff --cached --quiet || git commit -m "Automated Preprocessing: update cleaned data"
+          
+          git push
