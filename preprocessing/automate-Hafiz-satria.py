@@ -98,7 +98,7 @@ def save_data(df, path):
 def main():
     print(" START PIPELINE\n")
 
-    df = load_data(DATA_PATH)
+    df = load_data(path)
     df = preprocess(df)
     save_data(df, OUTPUT_PATH)
 
